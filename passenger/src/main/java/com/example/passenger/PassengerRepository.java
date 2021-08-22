@@ -6,11 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//convention for anything accessing our database
-//JPA specifically
-
-//need to put T (type) in the <> and id for type we want
-
 @Repository
 public interface PassengerRepository
         extends JpaRepository<Passenger, Long> {

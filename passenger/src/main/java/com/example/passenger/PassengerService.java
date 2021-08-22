@@ -17,12 +17,12 @@ public class PassengerService {
     public PassengerService(PassengerRepository passengerRepository) {
         this.passengerRepository = passengerRepository;
     }
-
+//      getting all the passengers
     public List<Passenger> getPassenger(){
 
         return passengerRepository.findAll();
     }
-
+//      adding a new passenger
     public void addNewPassenger(Passenger passenger) {
 
         Optional<Passenger> passengerOptional = passengerRepository
@@ -32,7 +32,7 @@ public class PassengerService {
         }
         passengerRepository.save(passenger);
     }
-
+//      deleting passenger
     public void deletePassenger(Long passportId) {
         boolean exists = passengerRepository.existsById(passportId);
         if(!exists){
@@ -42,26 +42,32 @@ public class PassengerService {
         }
         passengerRepository.deleteById(passportId);
     }
-
+//      updating passenger
     @Transactional
     public void updatePassenger(String firstName,
                                 String lastName,
-                                Long passengerId,
+                                Long passportId,
                                 String email) {
-        Passenger passenger = passengerRepository.findById(passengerId)
+//        checking is there passenger with specific passport ID
+        Passenger passenger = passengerRepository.findById(passportId)
                 .orElseThrow(() -> new IllegalStateException(
-                        "student with id " + passengerId + " does not exist"
+                        "student with id "
+                                + passportId
+                                + " does not exist"
                 ));
+//        checking is there useful first name and updating it
         if (firstName != null &&
                 firstName.length() > 0 &&
                 !Objects.equals(passenger.getFirstName(), firstName)){
             passenger.setFirstName(firstName);
         }
+//        checking is there useful last name and updating it
         if (lastName != null &&
                 lastName.length() > 0 &&
                 !Objects.equals(passenger.getLastName(), lastName)){
             passenger.setLastName(lastName);
         }
+//        checking is there useful email and updating it
         if (email != null &&
                 email.length() > 0 &&
                 !Objects.equals(passenger.getEmail(), email)){

@@ -16,17 +16,25 @@ public class Passenger {
             strategy = GenerationType.SEQUENCE,
             generator = "passenger_sequence"
     )
+//    initializing variables
     private String firstName;
     private String lastName;
     private Long passportId;
     private String email;
-
+//    no argument constructor
+    public Passenger() {
+    }
+//    argument constructor
     public Passenger(String firstName,
                      String lastName,
-                     long passportId,
+                     Long passportId,
                      String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.passportId = passportId;
+        this.email = email;
     }
-
+//      getters and setters
     public String getFirstName() {
         return firstName;
     }
@@ -58,7 +66,7 @@ public class Passenger {
     public void setEmail(String email) {
         this.email = email;
     }
-
+//    toString method
     @Override
     public String toString() {
         return "Passenger{" +
