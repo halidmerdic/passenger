@@ -18,9 +18,14 @@ public class PassengerService {
         this.passengerRepository = passengerRepository;
     }
 //      getting all the passengers
-    public List<Passenger> getPassenger(){
+    public List<Passenger> getAllPassengers(){
 
         return passengerRepository.findAll();
+    }
+//    getting specific passenger
+    public Optional<Passenger> getPassenger(String email){
+
+        return passengerRepository.findPassengerByEmail(email);
     }
 //      adding a new passenger
     public void addNewPassenger(Passenger passenger) {
